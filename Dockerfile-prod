@@ -1,0 +1,34 @@
+FROM python:3.10-alpine AS builder
+
+# Install pipx
+RUN apk update && \
+  apk add --no-cache bash && \
+  pip install pipx && \
+  pipx ensurepath
+
+# Install Poetry
+RUN pipx install poetry
+
+# Set the working directory in the container
+WORKDIR /app
+
+COPY . /app/
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Install project dependencies
+RUN poetry install --no-dev
+
+# Package the application into the /app directory
+RUN mkdir -p /dist && \
+    poetry build && \
+    mv dist /
+
+WORKDIR /dist
+
+# Delete /app directory
+RUN rm -rf /app
+
+CMD ["sh", "-c", "ls -lah /dist"]

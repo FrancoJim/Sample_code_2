@@ -1,0 +1,14 @@
+,DatasetName,DatasetDescription
+0,NIPA,Standard NIPA tables
+1,NIUnderlyingDetail,Standard NI underlying detail tables
+2,MNE,Multinational Enterprises
+3,FixedAssets,Standard Fixed Assets tables
+4,ITA,International Transactions Accounts
+5,IIP,International Investment Position
+6,InputOutput,Input-Output Data
+7,IntlServTrade,International Services Trade
+8,IntlServSTA,International Services Supplied Through Affiliates
+9,GDPbyIndustry,GDP by Industry
+10,Regional,Regional data sets
+11,UnderlyingGDPbyIndustry,Underlying GDP by Industry
+12,APIDatasetMetaData,Metadata about other API datasets

@@ -1,0 +1,6 @@
+setuptools
+wheel
+pytest
+boto3
+pandas
+poetry
