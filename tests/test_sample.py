@@ -1,4 +1,4 @@
-from .libs.utils import add
+from sample_1.libs.utils import add
 
 
 def test_add():

@@ -4,15 +4,14 @@ WORKDIR /app
 
 COPY . /app/
 
+ENV PYTHONPATH /app:$PYTHONPATH
+
+RUN apk update && \
+    apk add --no-cache make
+
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install aws cli
-# RUN apk add --no-cache curl \
-#     && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-#     && unzip awscliv2.zip \
-#     && ./aws/install -i /usr/local/aws-cli -b /usr/local/bin \
-#     && rm awscliv2.zip
-
-# Run main.py when the container launches
-CMD ["python", "sample_1/main.py"]
+# Run the application
+CMD ["python", "sample_2/main.py"]
+# CMD ["make", "run"]

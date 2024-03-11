@@ -14,7 +14,7 @@ services:
     environment:
       - ENV=development
     profiles:
-      - sample_2_dev
+      - dev
 
   app-prod:
     container_name: sample_2_prod
@@ -27,7 +27,22 @@ services:
     environment:
       - ENV=production
     profiles:
-      - sample_2_prod
+      - prod
+
+  app-make:
+    container_name: sample_2_make
+    image: sample_2_make
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile-make
+    volumes:
+      - .:/app
+    environment:
+      - ENV=build
+    profiles:
+      - make
 
   app-test:
     container_name: sample_2_test
@@ -40,4 +55,4 @@ services:
     environment:
       - ENV=testing
     profiles:
-      - sample_2_test
+      - test
