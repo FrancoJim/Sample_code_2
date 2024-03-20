@@ -1,0 +1,28 @@
+FROM python:3.10-alpine
+
+# Install pipx
+RUN apk update && \
+  apk add --no-cache bash && \
+  pip install pipx && \
+  pipx ensurepath
+
+# Install Poetry
+RUN pipx install poetry
+
+# Set the working directory in the container
+WORKDIR /app
+
+COPY . /app/
+
+ENV PYTHONPATH /app:$PYTHONPATH
+
+RUN apk update && \
+    apk add --no-cache make
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+ENTRYPOINT ["make"]
+
+
